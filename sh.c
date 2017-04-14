@@ -46,6 +46,11 @@ int run_shell(void)
 	char *input = NULL;
 	while ( (input = readline("% ")) )
 	{
+		if (!strlen(input)) {
+			free(input);
+			continue;
+		}
+		
 		int pipes_num = count_parts(input, "|") - 1;
 
 		if (pipes_num > 0)
